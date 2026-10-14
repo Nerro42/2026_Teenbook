@@ -7,10 +7,11 @@
 ```
 SELECT ?item ?itemLabel ?description WHERE {
   VALUES ?item {
-    wd:Q6028924    # мечта
-    wd:Q4503831    # цель 
-    wd:Q2995644    # результат
-    wd:Q16874480   # самореализация
+    wd:Q13649246    # неизвестность 
+    wd:Q44619       # страх 
+    wd:Q154430      # тревога 
+    wd:Q18614415    # избегание 
+    wd:Q58998540    # личный рост
   }
 
   SERVICE wikibase:label { bd:serviceParam wikibase:language "ru,en". }
