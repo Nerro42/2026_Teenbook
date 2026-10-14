@@ -6,11 +6,11 @@ import requests
 QUERY = """
 SELECT ?item ?itemLabel ?description WHERE {
   VALUES ?item {
-    wd:Q4235019    # неизвестность 
-    wd:Q81938      # страх 
-    wd:Q650258     # тревога 
-    wd:Q129208     # избегание 
-    wd:Q1200880    # личный рост 
+    wd:Q13649246    # неизвестность 
+    wd:Q44619      # страх 
+    wd:Q154430     # тревога 
+    wd:Q18614415    # избегание 
+    wd:Q58998540   # личный рост 
   }
 
   SERVICE wikibase:label { bd:serviceParam wikibase:language "ru,en". }
