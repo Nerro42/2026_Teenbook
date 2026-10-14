@@ -7,10 +7,10 @@ QUERY = """
 SELECT ?item ?itemLabel ?description WHERE {
   VALUES ?item {
     wd:Q13649246    # неизвестность 
-    wd:Q44619      # страх 
-    wd:Q154430     # тревога 
+    wd:Q44619       # страх 
+    wd:Q154430      # тревога 
     wd:Q18614415    # избегание 
-    wd:Q58998540   # личный рост 
+    wd:Q58998540    # личный рост 
   }
 
   SERVICE wikibase:label { bd:serviceParam wikibase:language "ru,en". }
@@ -67,10 +67,7 @@ def main() -> None:
   output_path = pathlib.Path("wikidata_export.json")
 
   data = run_query(QUERY)
-  converted = convert_format(
-    data,
-    "Я и будущее: Страх неизвестности"
-  )
+  converted = convert_format(data, "Я и будущее (выбор пути): Страх неизвестности")
   save_result(converted, output_path)
 
   print(f"Готово: результат сохранён в {output_path}")
