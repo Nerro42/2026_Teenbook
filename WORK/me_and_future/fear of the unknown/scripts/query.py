@@ -6,10 +6,11 @@ import requests
 QUERY = """
 SELECT ?item ?itemLabel ?description WHERE {
   VALUES ?item {
-    wd:Q6028924    # мечта
-    wd:Q4503831    # цель 
-    wd:Q2995644    # результат
-    wd:Q16874480   # самореализация
+    wd:Q4235019    # неизвестность 
+    wd:Q81938      # страх 
+    wd:Q650258     # тревога 
+    wd:Q129208     # избегание 
+    wd:Q1200880    # личный рост 
   }
 
   SERVICE wikibase:label { bd:serviceParam wikibase:language "ru,en". }
@@ -45,6 +46,7 @@ def save_result(data: dict, output_path: pathlib.Path) -> None:
   with open(output_path, "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2)
 
+
 def convert_format(data: dict, project_name: str) -> dict:
   concepts = []
   for binding in data["results"]["bindings"]:
@@ -53,17 +55,22 @@ def convert_format(data: dict, project_name: str) -> dict:
       "conceptLabel": binding["itemLabel"]["value"],
       "description": binding.get("description", {}).get("value", "")
     })
+
   return {
     "project": project_name,
     "source": "WikiData SPARQL endpoint",
     "concepts": concepts
   }
 
+
 def main() -> None:
   output_path = pathlib.Path("wikidata_export.json")
 
   data = run_query(QUERY)
-  converted = convert_format(data, "Я и будущее (выбор пути): Цели и мечты")
+  converted = convert_format(
+    data,
+    "Я и будущее: Страх неизвестности"
+  )
   save_result(converted, output_path)
 
   print(f"Готово: результат сохранён в {output_path}")
